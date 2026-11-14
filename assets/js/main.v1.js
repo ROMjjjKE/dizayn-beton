@@ -20,14 +20,14 @@
     var slab=Math.sqrt(run*run+h*h)/1000*(w/1000)*(t==='z'?0.11:0.12);
     var st=n*0.5*(riser/1000)*(tread/1000)*(w/1000);
     var vol=slab+st, weight=vol*2.5;
-    var cells=[['ступеней','<b>'+n+'</b><span>подъём '+Math.round(riser)+' мм</span>'],
-      ['проступь','<b>'+tread+' мм</b><span>ширина марша '+w+' мм</span>'],
-      ['длина марша','<b>'+Math.round(run/10)*10+' мм</b><span>'+(flights>1?'два марша и площадка':'один марш')+'</span>'],
-      ['объём бетона','<b>'+fmt(vol,2)+' м³</b><span>с запасом на примыкания</span>'],
-      ['вес монолита','<b>'+fmt(weight,1)+' т</b><span>плотность 2,5 т/м³</span>'],
-      ['набор прочности','<b>28 дней</b><span>распалубка на 7–10 день</span>']];
+    var cells=['<b>'+n+'</b><span>ступеней · подъём '+Math.round(riser)+' мм</span>',
+      '<b>'+tread+' мм</b><span>проступь · марш '+w+' мм</span>',
+      '<b>'+Math.round(run/10)*10+' мм</b><span>длина марша · '+(flights>1?'два марша и площадка':'один марш')+'</span>',
+      '<b>'+fmt(vol,2)+' м³</b><span>объём бетона с запасом</span>',
+      '<b>'+fmt(weight,1)+' т</b><span>вес монолита</span>',
+      '<b>28 дней</b><span>прочность · распалубка 7–10 день</span>'];
     out.innerHTML='';
-    cells.forEach(function(c){var d=document.createElement('div');d.innerHTML=c[1];out.appendChild(d);});
+    cells.forEach(function(c){var d=document.createElement('div');d.innerHTML=c;out.appendChild(d);});
     draw(n,riser,tread,h,w,run);
     var msg='Расчёт лестницы с сайта Дизайн-Бетон: высота этажа '+h+' мм, '+(t==='pryam'?'прямая':t==='g'?'Г-образная':t==='p'?'П-образная':'с забежными ступенями')+', ширина марша '+w+' мм. Ступеней '+n+', подъём '+Math.round(riser)+' мм, проступь '+tread+' мм, длина марша '+Math.round(run)+' мм, объём бетона '+fmt(vol,2)+' м³, вес '+fmt(weight,1)+' т.';
     btn.href='https://wa.me/375333827488?text='+encodeURIComponent(msg);
